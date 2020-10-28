@@ -1,9 +1,9 @@
 # PlantSensor
 
 Multiple sensors in one box!
-Soil Moisture
-Temperature
-Humidity
-Light
+\nSoil Moisture
+\nTemperature
+\nHumidity
+\nLight
 
 Can send data to a database on a local Raspberry Pi server
