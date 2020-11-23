@@ -14,12 +14,12 @@
 
 $servername = "localhost";
 
-// REPLACE with your Database name
+// Database name
 $dbname = "esp-data";
-// REPLACE with Database user
-$username = "dbuenrostro64";
-// REPLACE with Database user password
-$password = "Bloocool091897@";
+// Database user
+$username = "";
+// Database user password
+$password = "";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -28,8 +28,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
+// sql script. Selects all data from database along with all columns starting from most recent data collected
 $sql = "SELECT id, plant, dataTemperature, dataHumidity, dataLight, dataSoilMoisture, reading_time FROM SensorData ORDER BY id DESC";
 
+// table with database catergories created, no data added yet
 echo '<table cellspacing="5" cellpadding="5">
       <tr> 
         <td>ID</td> 
@@ -40,9 +42,13 @@ echo '<table cellspacing="5" cellpadding="5">
         <td>DataSoilMoisture</td> 
         <td>Timestamp</td> 
       </tr>';
- 
+
+// perform query on database
 if ($result = $conn->query($sql)) {
+    // row var contains one row from database
+    // will repeat for each value row in database
     while ($row = $result->fetch_assoc()) {
+      // set data from database row to variables
         $row_id = $row["id"];
         $row_plant = $row["plant"];
         $row_dataTemperature = $row["dataTemperature"];
@@ -50,12 +56,8 @@ if ($result = $conn->query($sql)) {
         $row_dataLight = $row["dataLight"]; 
         $row_dataSoilMoisture = $row["dataSoilMoisture"]; 
         $row_reading_time = $row["reading_time"];
-        // Uncomment to set timezone to - 1 hour (you can change 1 to any number)
-        //$row_reading_time = date("Y-m-d H:i:s", strtotime("$row_reading_time - 1 hours"));
       
-        // Uncomment to set timezone to + 4 hours (you can change 4 to any number)
-        //$row_reading_time = date("Y-m-d H:i:s", strtotime("$row_reading_time + 4 hours"));
-      
+        // fill in table with database values
         echo '<tr> 
                 <td>' . $row_id . '</td> 
                 <td>' . $row_plant . '</td> 

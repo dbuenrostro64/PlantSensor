@@ -1,16 +1,26 @@
 <?php
 
-$connect = mysqli_connect("localhost", "dbuenrostro64", "Bloocool091897@", "esp-data");
+$connect = mysqli_connect("localhost", "", "", "esp-data");
 if (!$connect){
 	echo "unable to connect to MySQL";
 }
+// Selects all data from database
 $query = "SELECT * FROM SensorData";
 $result = mysqli_query($connect, $query);
 $chart_data = "";
+// return string with a database row
+// repeat for all rows
 while($row = mysqli_fetch_array($result))
 {
-	$chart_data .= "{ reading_time: '".$row["reading_time"]."', dataTemperature:".$row["dataTemperature"].", dataHumidity:".$row["dataHumidity"].", dataLight:".$row["dataLight"].", dataSoilMoisture:".$row["dataSoilMoisture"]."}, ";
+	// store row data in a chart
+	// concatenation operator so new strings are added at the end
+	$chart_data .= "{ reading_time: '".$row["reading_time"]."', 
+					dataTemperature:".$row["dataTemperature"].", 
+					dataHumidity:".$row["dataHumidity"].", 
+					dataLight:".$row["dataLight"].", 
+					dataSoilMoisture:".$row["dataSoilMoisture"]."}, ";
 }
+// returns chart_data with 2 chars ommited at the end and stores in var
 $chart_data = substr($chart_data, 0, -2);
 ?>
 
@@ -19,6 +29,7 @@ $chart_data = substr($chart_data, 0, -2);
 	<head>
 		<title>Plant Telemetry Chart</title>
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+		<!-- run javascript code for creating graphs -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
@@ -37,7 +48,9 @@ $chart_data = substr($chart_data, 0, -2);
 
 </html>
 
+
 <script>
+// define the qualities of a line graph
 Morris.Line({
 	element : 'chart',
 	data:[<?php echo $chart_data; ?>],

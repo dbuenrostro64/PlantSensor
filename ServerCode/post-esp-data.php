@@ -13,12 +13,12 @@
 
 $servername = "localhost";
 
-// REPLACE with your Database name
+// Database name
 $dbname = "esp-data";
-// REPLACE with Database user
-$username = "dbuenrostro64";
-// REPLACE with Database user password
-$password = "Bloocool091897@";
+// Database user
+$username = "";
+// Database user password
+$password = "";
 
 // Keep this API Key value to be compatible with the ESP32 code provided in the project page. 
 // If you change this value, the ESP32 sketch needs to match
@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Connection failed: " . $conn->connect_error);
         } 
         
+        // each of the 5 values is being being inserted into its corresponding database column
         $sql = "INSERT INTO SensorData (plant, dataTemperature, dataHumidity, dataLight, dataSoilMoisture)
         VALUES ('" . $plant . "', '" . $dataTemperature . "', '" . $dataHumidity . "', '" . $dataLight . "', '" . $dataSoilMoisture . "')";
         
@@ -63,9 +64,10 @@ else {
     echo "No data posted with HTTP POST.";
 }
 
+// parses data
 function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
+    $data = trim($data); // removes whitespace from begining and end of string
+    $data = stripslashes($data); // removes quotes from string
     $data = htmlspecialchars($data);
     return $data;
 }
