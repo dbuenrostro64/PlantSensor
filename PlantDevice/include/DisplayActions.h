@@ -26,15 +26,24 @@ class DisplayActions{
         unsigned long lastUpdateLcd1 = 0;
         unsigned long lastUpdateLcd2 = 0;
         int updateLcd = 250;
-        void displayOnScreen(float data);
-        void displayTitleOnScreen(String title);
+        
     public:
+        // constructor. sets pins and creates object for lcd display 
         DisplayActions() : lcd(LCD_RS_PIN,LCD_E_PIN,LCD_D4_PIN,LCD_D5_PIN,LCD_D6_PIN,LCD_D7_PIN) {}
         LiquidCrystal lcd;
+        // flash setup message on display at startup
         void displayInit(void);
-        void buttonPressCheck(CollectData& x);
-        void cycleDisplay(CollectData& x);
+        // displays data onto lcd display
+        void displayOnScreen(float data);
+        // displays titles onto lcd display
+        void displayTitleOnScreen(String title);
+        // displays words onto lcd display
         void displayTextOnScreen(String words);
+        // debounce button
+        // changes display state when button is pressed
+        void buttonPressCheck(CollectData& x);
+        // changes display when button pressed
+        void cycleDisplay(CollectData& x);
 };
 
 #endif

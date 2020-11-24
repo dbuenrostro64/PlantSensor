@@ -40,7 +40,7 @@ void BuzzerSong::buzzerInit()
   
 }
 
-// widepeepohappy
+// Happy buzzer sound
 
 void BuzzerSong::buzzerPog(void)
 {
@@ -71,7 +71,7 @@ void BuzzerSong::buzzerPog(void)
   
 }
 
-// not widepeepohappy
+// Sad buzzer sound
 
 void BuzzerSong::buzzerDog(void)
 {

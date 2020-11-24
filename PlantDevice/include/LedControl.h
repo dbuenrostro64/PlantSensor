@@ -16,8 +16,11 @@ class LedControl{
         int freq = 5000;
         int resolution = 12;
     public:
+        // flash lights at startup
         void ledInit(void);
+        // Blue light flashes
         void ledPog(void);
+        // Red light flashes
         void ledDog(void);
 };
 

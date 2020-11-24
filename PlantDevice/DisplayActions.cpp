@@ -12,6 +12,7 @@ void DisplayActions::displayInit(void)
   lcd.setCursor(2,1);
   lcd.print("Version 1.0");
 }
+
 // displays data onto lcd display
 
 void DisplayActions::displayOnScreen(float data)
@@ -26,6 +27,7 @@ void DisplayActions::displayOnScreen(float data)
 }
 
 // displays titles onto lcd display
+
 void DisplayActions::displayTitleOnScreen(String title)
 {
   if ((millis() - lastUpdateLcd1) > updateLcd)
@@ -51,17 +53,15 @@ void DisplayActions::displayTextOnScreen(String words)
 
 void DisplayActions::buttonPressCheck(CollectData& x)
 {
-  //Serial.println("hello");
-
   int reading = digitalRead(BUTTON_PIN);
-  //Serial.println(reading);
   if(reading != lastButtonState)
   {
     lastDebounceTime = millis();
   }
-  //Serial.println(millis() - lastDebounceTime);
+  // if button is held for holdButtonTime length
   if((millis() - lastDebounceTime) > holdButtonTime && buttonState == 1)  
   { 
+    // collects data from all sensors
     x.takeMeasurement();
   }
   if((millis() - lastDebounceTime) > debounceDelay)
@@ -86,16 +86,15 @@ void DisplayActions::buttonPressCheck(CollectData& x)
 
 void DisplayActions::cycleDisplay(CollectData& x)
 {
+  // 4 button states that cycle 0-4
   if (buttonPos == 0)
   {
     //lcd.clear();
-    //Serial.println("hello");
     displayTitleOnScreen("Soil:");
     displayOnScreen(x.soilMoisture);
   }
   else if (buttonPos == 1)
   {
-    //Serial.println("test");
     displayTitleOnScreen("Temp:");
     displayOnScreen(x.tempF);
     //lcd.clear();

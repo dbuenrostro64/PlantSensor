@@ -30,9 +30,13 @@ class BuzzerSong{
 
         
     public:
+        // sets channels and pins
         BuzzerSong();
+        // buzzer tune when at startup
         void buzzerInit(void);
+        // Happy buzzer sound
         void buzzerPog(void);
+        // Sad buzzer sound
         void buzzerDog(void);
 };
 

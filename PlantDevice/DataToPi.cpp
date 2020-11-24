@@ -4,14 +4,16 @@
 
 void DataToPi::scanForWifi(float tempF, float humidity, float light, float soilMoisture)
 {
+  // scans every updatePi seconds
   if ((millis() - lastUpdatePi) > updatePi)
   {
     lastUpdatePi = millis();
     if (WiFi.status() == WL_CONNECTED)
     {
-        
+        // connects to server(raspberry pi)
         http.begin(serverName);
         http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+        // sends most recent sensor values to function
         sendToPi(tempF, humidity, light, soilMoisture);
         http.end();
     }
@@ -26,10 +28,12 @@ void DataToPi::scanForWifi(float tempF, float humidity, float light, float soilM
 
 void DataToPi::sendToPi(float tempF, float humidity, float light, float soilMoisture)
 {
+  // store all data in a string
     String httpRequestData = "api_key=" + apiKeyValue + "&plant=" + plantName + "&dataTemperature=" + String(tempF)
                           + "&dataHumidity=" + String(humidity) + "&dataLight=" + String(light) + "&dataSoilMoisture=" + String(soilMoisture) + "";
     Serial.print("httpRequestData: ");
     Serial.println(httpRequestData);
+    // send data to server/ return a response code
     int httpResponseCode = http.POST(httpRequestData);
     if (httpResponseCode>0) {
       Serial.print("HTTP Response code: ");
