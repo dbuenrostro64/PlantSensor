@@ -12,7 +12,6 @@ void DisplayActions::displayInit(void)
   lcd.setCursor(2,1);
   lcd.print("Version 1.0");
 }
-
 // displays data onto lcd display
 
 void DisplayActions::displayOnScreen(float data)
@@ -27,7 +26,6 @@ void DisplayActions::displayOnScreen(float data)
 }
 
 // displays titles onto lcd display
-
 void DisplayActions::displayTitleOnScreen(String title)
 {
   if ((millis() - lastUpdateLcd1) > updateLcd)
@@ -58,10 +56,8 @@ void DisplayActions::buttonPressCheck(CollectData& x)
   {
     lastDebounceTime = millis();
   }
-  // if button is held for holdButtonTime length
   if((millis() - lastDebounceTime) > holdButtonTime && buttonState == 1)  
   { 
-    // collects data from all sensors
     x.takeMeasurement();
   }
   if((millis() - lastDebounceTime) > debounceDelay)
@@ -86,10 +82,8 @@ void DisplayActions::buttonPressCheck(CollectData& x)
 
 void DisplayActions::cycleDisplay(CollectData& x)
 {
-  // 4 button states that cycle 0-4
   if (buttonPos == 0)
   {
-    //lcd.clear();
     displayTitleOnScreen("Soil:");
     displayOnScreen(x.soilMoisture);
   }
@@ -97,23 +91,19 @@ void DisplayActions::cycleDisplay(CollectData& x)
   {
     displayTitleOnScreen("Temp:");
     displayOnScreen(x.tempF);
-    //lcd.clear();
   }
   else if (buttonPos == 2)
   {
-    //lcd.clear();
     displayTitleOnScreen("Humid:");
     displayOnScreen(x.humidity);
   }
   else if (buttonPos == 3)
   {
-    //lcd.clear();
     displayTitleOnScreen("Light:");
     displayOnScreen(x.light);
   }
   else if (buttonPos == 4)
   {
-    //lcd.clear();
     displayTitleOnScreen("Bat:");
     displayOnScreen(x.batteryLife);
   }

@@ -26,7 +26,7 @@ void LedControl::ledInit(void)
   ledcWrite(LED_CHANNEL_BLUE, dutyCycleOff);
 }
 
-// Blue light flashes
+// widepeepohappy
 
 void LedControl::ledPog(void)
 {
@@ -37,10 +37,9 @@ void LedControl::ledPog(void)
   ledcWrite(LED_CHANNEL_BLUE, dutyCycleMid);
   delay(375);
   ledcWrite(LED_CHANNEL_BLUE, dutyCycleOff);
-  
 }
 
-// Red light flashes
+// not widepeepohappy
 
 void LedControl::ledDog(void)
 {

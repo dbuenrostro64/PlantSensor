@@ -6,7 +6,7 @@
 class CollectData{
   friend class DisplayActions;
   private:
-    const byte BATTERY_PIN = 4;
+    const byte BATTERY_PIN = 32;
     const byte TEMP_SENSOR_PIN = 23;
     const byte SOIL_SENSOR_PIN = 34;
     const byte LIGHT_SENSOR_PIN = 35;

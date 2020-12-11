@@ -1,5 +1,5 @@
+#include <Arduino.h>
 #include "include/Buzzersong.h"
-#include "arduino.h"
 
 BuzzerSong::BuzzerSong()
         {
@@ -37,10 +37,9 @@ void BuzzerSong::buzzerInit()
   ledcWrite(BUZZER_CHANNEL_1, buzzDutyCycle); 
   delay(150);
   ledcWrite(BUZZER_CHANNEL_1, 0);
-  
 }
 
-// Happy buzzer sound
+// widepeepohappy
 
 void BuzzerSong::buzzerPog(void)
 {
@@ -68,10 +67,9 @@ void BuzzerSong::buzzerPog(void)
   ledcWrite(BUZZER_CHANNEL_1, buzzDutyCycle); 
   delay(100);
   ledcWrite(BUZZER_CHANNEL_1, 0);
-  
 }
 
-// Sad buzzer sound
+// not widepeepohappy
 
 void BuzzerSong::buzzerDog(void)
 {
@@ -84,5 +82,4 @@ void BuzzerSong::buzzerDog(void)
   ledcWrite(BUZZER_CHANNEL_1, buzzDutyCycle); 
   delay(75);
   ledcWrite(BUZZER_CHANNEL_1, 0);
-  
 }

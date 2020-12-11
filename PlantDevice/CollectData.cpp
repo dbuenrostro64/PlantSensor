@@ -54,7 +54,6 @@ void CollectData::debugging(void){
     Serial.print(tempF);
     Serial.print(F("°F  Light: "));
     Serial.println(light);
+    Serial.print(F("Battery Life: "));
+    Serial.println(batteryLife);
 }
-
-
-

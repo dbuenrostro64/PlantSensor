@@ -17,26 +17,18 @@
 #define A5_NOTE 880
 #define C6_NOTE 1047
 
-
-
-
 class BuzzerSong{
     private:
-        const byte BUZZER_PIN = 26;
+        const byte BUZZER_PIN = 4;
         const int BUZZER_CHANNEL_1 = 3;
         const int resolution = 12;
         int freq = 5000;
         int buzzDutyCycle = 2000;
 
-        
     public:
-        // sets channels and pins
         BuzzerSong();
-        // buzzer tune when at startup
         void buzzerInit(void);
-        // Happy buzzer sound
         void buzzerPog(void);
-        // Sad buzzer sound
         void buzzerDog(void);
 };
 
